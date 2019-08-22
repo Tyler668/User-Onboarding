@@ -33,7 +33,7 @@ const UserForm = ({ errors, touched, values, status }) => {
 
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({ errors, touched, values, status }) {
+    mapPropsToValues({ name, email, password, terms }) {
         return {
             name: name || "",
             email: email || "",
@@ -47,7 +47,16 @@ const FormikUserForm = withFormik({
         email: Yup.string().required("Enter an email"),
         password: Yup.string().min(6,"Password must be at least 6 characters long").required("Enter a password"),
         terms: Yup.boolean().required("Please agree to terms of service")
-    })
+    }),
+
+    handleSubmit(values, { setStatus }) {
+        axios
+          .post("https://reqres.in/api/users/", values)
+          .then(res => {
+            setStatus(res.data);
+          })
+          .catch(err => console.log(err.response));
+      }
 
 })(UserForm)
 

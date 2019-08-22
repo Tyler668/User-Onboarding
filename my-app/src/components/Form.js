@@ -4,11 +4,11 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 
 const UserForm = ({ errors, touched, values, status }) => {
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState([]);
     console.log("this is touched", touched);
     useEffect(() => {
         if (status) {
-            setUsers([...users, status]);
+            setUser([...user, status]);
         }
     }, [status]);
 
@@ -56,6 +56,19 @@ const UserForm = ({ errors, touched, values, status }) => {
                 <div className="formInput"></div>
                 <button type="submit">Submit</button>
             </Form>
+
+            <div className="infoDisplay">
+                {user.map(info => (
+                    <ul key={info.id}>
+                        <h4>Haha I have your data nerd</h4>
+                        <li>Name:  {info.name}</li>
+                        <li>E-mail:  {info.email}</li>
+                        <li>Password:  {info.password}</li>
+                    </ul>
+                ))}
+            </div>
+
+
         </div>
 
     );
@@ -76,7 +89,11 @@ const FormikUserForm = withFormik({
         name: Yup.string().required("You forgot to enter a name dude..."),
         email: Yup.string().required("You forgot an email, c'mon bro."),
         password: Yup.string().min(6, "Password must be at least 6 characters long, It literally says it on the form my guy ").required("Oh yeah for sure, let's just make an account with no password... smh"),
-        terms: Yup.boolean().required("Read the terms, or don't, just please, click the check box")
+        terms: Yup.bool()
+            .test('consent',
+                "Read the terms, or don't, just please, click the check box",
+                value => value === true)
+            .required("")
     }),
 
     handleSubmit(values, { setStatus }) {

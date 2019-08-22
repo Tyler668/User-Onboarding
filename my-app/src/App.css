@@ -34,10 +34,29 @@
 
 
 .userForm{
-
+font-family: 
 }
 
 .formContainer{
   font-size: 1rem; 
 
+}
+
+h1{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 5rem;
+  margin-top: 10px;
+
+}
+
+h3, p{
+  font-family: 'PT Mono', monospace;
+}
+
+h2{
+  font-family: 'Permanent Marker', cursive;
+}
+
+.infoDisplay{
+  
 }

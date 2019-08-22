@@ -15,26 +15,45 @@ const UserForm = ({ errors, touched, values, status }) => {
     return (
         <div className="formContainer">
             <Form>
-                <Field name="name" type="text" placeholder="Name" />
-                {touched.name && errors.name && (
-                    <p className="error">{errors.name}</p>
-                )}
+                <div className="formInput">
+                    <h2>Name</h2>
+                    <Field name="name" type="text" placeholder="Name" />
+                    {touched.name && errors.name && (
+                        <p className="error">{errors.name}</p>
+                    )}
+                </div>
 
-                <Field name="email" type="email" placeholder="E-mail" />
-                {touched.email && errors.email && (
-                    <p className="error">{errors.email}</p>
-                )}
+                <div className="formInput">
+                    <h2>E-mail</h2>
+                    <Field name="email" type="email" placeholder="E-mail" />
+                    {touched.email && errors.email && (
+                        <p className="error">{errors.email}</p>
+                    )}
+                </div>
 
-                <Field name="password" type="password" placeholder="Password (6+ Chars)" />
-                {touched.password && errors.password && (
-                    <p className="error">{errors.password}</p>
-                )}
+                <div className="formInput">
+                    <h2>Password</h2>
+                    <Field name="password" type="password" placeholder="Password (6+ Chars)" />
+                    {touched.password && errors.password && (
+                        <p className="error">{errors.password}</p>
+                    )}
+                </div>
 
-                <label className="checkbox-container">
-                    Terms of Service
-                <Field name="terms" type="checkbox" checked = {values.terms}/>
-                </label>
+                <br />
 
+                <div className="formInput">
+                    <label className="checkbox-container">
+                        I have read and agree to the terms or whatever
+                    <br />
+                        <Field name="terms" type="checkbox" checked={values.terms} />
+                        {touched.terms && errors.terms && (
+                            <p className="error">{errors.terms}</p>
+                        )}
+                    </label>
+                </div>
+
+
+                <div className="formInput"></div>
                 <button type="submit">Submit</button>
             </Form>
         </div>

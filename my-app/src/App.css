@@ -76,3 +76,20 @@ li{
   justify-items: center;
   text-align: center;
 }
+
+button{
+  width: 80px;
+  height:30px;
+  background: white;
+  color: #282c34;
+  border-radius: 15px;
+  font-weight: 600;
+  border: none;
+  margin: 10px;
+}
+
+button:active{
+  background: #282c34;
+  color: white;
+  border: 1px solid white;
+}

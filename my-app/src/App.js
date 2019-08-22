@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className = "appCont">
-        <h1>Aggro Form</h1>
+        <h1>Aggro-Form</h1>
         <UserForm className = "userForm"/>
         </div>
       </header>

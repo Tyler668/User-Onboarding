@@ -27,36 +27,48 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 
-.userForm{
-font-family: 
-}
-
-.formContainer{
-  font-size: 1rem; 
+.formContainer {
+  font-size: 1rem;
 
 }
 
-h1{
-  font-family: 'Permanent Marker', cursive;
+h1 {
+  font-family: 'Chela One', cursive;
   font-size: 5rem;
   margin-top: 10px;
 
 }
 
-h3, p{
+h3,
+p {
   font-family: 'PT Mono', monospace;
 }
 
-h2{
-  font-family: 'Permanent Marker', cursive;
+h2 {
+  font-family: 'Chela One', cursive;
 }
 
-.infoDisplay{
-  
+.infoCard {
+  background: whitesmoke;
+  color: gray;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+li{
+  text-align: initial;
+}
+
+.infoCard h4{
+  margin-top: 0;
 }

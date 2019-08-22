@@ -25,7 +25,7 @@ const UserForm = ({ errors, touched, values, status }) => {
 
                 <div className="formInput">
                     <h2>E-mail</h2>
-                    <Field  name="email" type="email" placeholder="E-mail" />
+                    <Field name="email" type="email" placeholder="E-mail" />
                     {touched.email && errors.email && (
                         <p className="error">{errors.email}</p>
                     )}
@@ -76,13 +76,6 @@ const UserForm = ({ errors, touched, values, status }) => {
     );
 };
 
-const checkIfWaffle = (value) =>{
-    if(value === 'waffle@syrup.com'){
-        return true;
-    }
-    return false;    
-    
-}
 
 const FormikUserForm = withFormik({
     mapPropsToValues({ name, email, password, terms }) {
@@ -97,12 +90,11 @@ const FormikUserForm = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string().required("You forgot to enter a name dude..."),
         email: Yup
-        .string()
-        // .test(checkIfWaffle(email), 'That e-mail is already in use, how could you not know that??')
-        .required("You forgot an e-mail, c'mon bro"),
+            .string()
+            .required("You forgot an e-mail, c'mon bro"),
         password: Yup.string().min(6, "Password must be at least 6 characters long, It literally says it on the form my guy ").required("Oh yeah for sure, let's just make an account with no password... smh"),
-        
-        
+
+
         terms: Yup.bool()
             .test('consent',
                 "Read the terms, or don't, just please, click the check box",
@@ -110,14 +102,21 @@ const FormikUserForm = withFormik({
             .required("")
     }),
 
-    handleSubmit(values, { setStatus }) {
-        axios
-            .post("https://reqres.in/api/users/", values)
-            .then(res => {
-                setStatus(res.data);
-            })
-            .catch(err => console.log(err.response));
+    handleSubmit(values, { setStatus, setErrors }) {
+        if (values.email === 'waffle@syrup.com') {
+            setErrors({ email: "That's a dumb e-mail, pick another" });
+        }
+
+        else {
+            axios
+                .post("https://reqres.in/api/users/", values)
+                .then(res => {
+                    setStatus(res.data);
+                })
+                .catch(err => console.log(err.response));
+        }
     }
+
 
 
 
